@@ -1,0 +1,29 @@
+name: Cascading Auto-Merge Action
+description:
+  GitHub Action to automatically merge downstream branches based on semantic
+  versioning
+
+branding:
+  icon: check-square
+  color: green
+
+inputs:
+  github_token:
+    description: GitHub Token
+    required: true
+  merge_token:
+    description:
+      If needed, pass in a token to be used to bypass branch protections and
+      merge PRs
+    required: false
+  prefixes:
+    description: Comma-separated list of prefixes to match
+    required: true
+  ref_branch:
+    description: Branch to use for the default PR
+    required: true
+
+runs:
+  pre: chainguard-phonehome.js
+  using: node20
+  main: dist/index.js
